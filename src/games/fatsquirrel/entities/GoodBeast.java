@@ -1,4 +1,4 @@
 package games.fatsquirrel.entities;
 
-public class GoodBeast {
+public class GoodBeast extends Entity {
 }
