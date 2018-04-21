@@ -1,5 +1,6 @@
 package games.fatsquirrel.core;
 
+
 public class Board {
 
     private BoardConfig config;
@@ -12,4 +13,8 @@ public class Board {
         this.config = config;
     }
 
+    public FlattenedBoard flatten() {
+        // TODO: Implement....
+        return null;
+    }
 }
