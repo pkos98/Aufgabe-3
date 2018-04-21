@@ -1,23 +1,24 @@
 package games.fatsquirrel.entities;
 
-public class MasterSquirrel extends PlayerEntity {
+import games.fatsquirrel.core.XY;
 
-    MiniSquirrel[] miniSquirrel = new MiniSquirrel[10];
+import java.util.LinkedList;
+import java.util.List;
 
+public abstract class MasterSquirrel extends Entity {
 
-    public boolean checkEntity(Entity entity) {
-        for (int i = 0; i < miniSquirrel.length; i++) {
-            if(true)
-                return true;
-        }
-        return false;
+    List<MiniSquirrel> miniSquirrels = new LinkedList<>();
+
+    @Override
+    public String getSymbol() {
+        return "MS";
     }
 
-    public MiniSquirrel[] creat() {
-        return miniSquirrel;
+    public MasterSquirrel(XY startPos) {
+        super(startPos);
+        energy = 1000;
     }
 
-    public MiniSquirrel[] getMiniSquireel() {
-        return miniSquirrel;
-    }
+    public boolean checkEntity(Entity entity) { return false; }
+
 }

@@ -1,10 +1,23 @@
 package games.fatsquirrel.entities;
 
-public class MiniSquirrel extends PlayerEntity {
+import games.fatsquirrel.core.XY;
 
-    MasterSquirrel masterSquirrel;
+public class MiniSquirrel extends Entity {
 
-    public MasterSquirrel getMasterSquirrel() {
-        return masterSquirrel;
+    MasterSquirrel patron;
+
+    public MiniSquirrel(XY startPos, MasterSquirrel master, int startEnergy) {
+        super(startPos);
+        patron = master;
+        energy = startEnergy;
+    }
+
+    public MasterSquirrel getPatron() {
+        return patron;
+    }
+
+    @Override
+    public String getSymbol() {
+        return "ms";
     }
 }
