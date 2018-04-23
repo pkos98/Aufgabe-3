@@ -21,6 +21,13 @@ public final class XY {
         return new XY(deltaX, deltaY);
     }
 
+    public static XY getRandomPosition(int xSize, int ySize) {
+        Random random = new Random();
+        int x = random.nextInt(xSize);
+        int y = random.nextInt(ySize);
+        return new XY(x, y);
+    }
+
     @Override
     public String toString() {
         return "X: " + x + " | Y:" + y;

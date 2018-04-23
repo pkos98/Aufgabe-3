@@ -4,7 +4,7 @@ import games.fatsquirrel.core.XY;
 
 public class GoodPlant extends Character {
 
-    private static final int START_ENERGY = 100;
+    public static final int START_ENERGY = 100;
 
     @Override
     public XY nextStep() {

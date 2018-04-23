@@ -1,7 +1,9 @@
 package games.fatsquirrel.core;
 
 import games.fatsquirrel.entities.*;
-import org.omg.CORBA.PERSIST_STORE;
+
+import java.util.Random;
+
 
 public class FlattenedBoard implements EntityContext, BoardView {
 
@@ -10,100 +12,108 @@ public class FlattenedBoard implements EntityContext, BoardView {
 
     @Override
     public EntityType getEntityType(int x, int y) {
-        return null;
+        return getEntityType(new XY(x, y));
     }
 
     @Override
     public XY getSize() {
-        return null;
+        return board.getSize();
     }
 
     @Override
     public void tryMove(MiniSquirrel miniSquirrel, XY moveDirection) {
-        Entity nextPosition = cells[miniSquirrel.getPosition().getX() + moveDirection.getX()]
-                [miniSquirrel.getPosition().getY() + moveDirection.getY()];
-        if (nextPosition instanceof Wall) {
-            miniSquirrel.updateEnergy(nextPosition.getEnergy());
+        XY nextPosition = new XY(miniSquirrel.getPosition().getX() + moveDirection.getX(),
+                miniSquirrel.getPosition().getY() + moveDirection.getY());
+        Entity nextEntity = cells[nextPosition.getX()][nextPosition.getY()];
+        if (nextEntity instanceof Wall) {
+            miniSquirrel.updateEnergy(nextEntity.getEnergy());
             miniSquirrel.paralyze();
             return;
-        } else if (nextPosition instanceof MiniSquirrel &&
-                miniSquirrel.getPatron() != ((MiniSquirrel) nextPosition).getPatron()) {
+        } else if (nextEntity instanceof MiniSquirrel &&
+                miniSquirrel.getPatron() != ((MiniSquirrel) nextEntity).getPatron()) {
             kill(miniSquirrel);
-        } else if (nextPosition instanceof MasterSquirrel &&
-                miniSquirrel.getPatron() != nextPosition) {
+        } else if (nextEntity instanceof MasterSquirrel &&
+                miniSquirrel.getPatron() != nextEntity) {
             kill(miniSquirrel);
-        } else if (nextPosition instanceof GoodPlant ||
-                nextPosition instanceof BadPlant) {
-            miniSquirrel.updateEnergy(nextPosition.getEnergy());
-            killAndReplace(nextPosition); // Nicht nur instanz gelöscht und null gesetzt, sondern auch neu erstellen
-        } else if (nextPosition instanceof GoodBeast ||
-                nextPosition instanceof BadBeast) {
-            miniSquirrel.updateEnergy(nextPosition.getEnergy());
-            killAndReplace(nextPosition);
+        } else if (nextEntity instanceof GoodPlant ||
+                nextEntity instanceof BadPlant) {
+            miniSquirrel.updateEnergy(nextEntity.getEnergy());
+            killAndReplace(nextEntity); // Nicht nur instanz gelöscht und null gesetzt, sondern auch neu erstellen
+        } else if (nextEntity instanceof GoodBeast ||
+                nextEntity instanceof BadBeast) {
+            miniSquirrel.updateEnergy(nextEntity.getEnergy());
+            killAndReplace(nextEntity);
         }
 
         cells[miniSquirrel.getPosition().getX()][miniSquirrel.getPosition().getY()] = null;
-        nextPosition = miniSquirrel;
+        nextEntity = miniSquirrel;
+        miniSquirrel.setPosition(nextPosition);
     }
 
     @Override
     public void tryMove(GoodBeast goodBeast, XY moveDirection) {
-        Entity nextPosition = cells[goodBeast.getPosition().getX() + moveDirection.getX()]
-                [goodBeast.getPosition().getY() + moveDirection.getY()];
+        XY nextPosition = new XY(goodBeast.getPosition().getX() + moveDirection.getX(),
+                goodBeast.getPosition().getY() + moveDirection.getY());
+        Entity nextEntity = cells[nextPosition.getX()][nextPosition.getY()];
         CHECK:
-        if (nextPosition == null)
+        if (nextEntity == null)
             break CHECK;
-        else if (nextPosition instanceof Wall)
+        else if (nextEntity instanceof Wall)
             return;
-        else if (nextPosition instanceof MiniSquirrel ||
-                  nextPosition instanceof MasterSquirrel) {
-            nextPosition.updateEnergy(goodBeast.getEnergy());
+        else if (nextEntity instanceof MiniSquirrel ||
+                  nextEntity instanceof MasterSquirrel) {
+            nextEntity.updateEnergy(goodBeast.getEnergy());
             killAndReplace(goodBeast);
         }
         cells[goodBeast.getPosition().getX()][goodBeast.getPosition().getY()] = null;
-        nextPosition = goodBeast;
+        cells[nextPosition.getX()][nextPosition.getY()] = goodBeast;
+        goodBeast.setPosition(nextPosition);
     }
 
     @Override
     public void tryMove(BadBeast badBeast, XY moveDirection) {
-        Entity nextPosition = cells[badBeast.getPosition().getX() + moveDirection.getX()]
-                [badBeast.getPosition().getY() + moveDirection.getY()];
+        XY nextPosition = new XY(badBeast.getPosition().getX() + moveDirection.getX(),
+                badBeast.getPosition().getY() + moveDirection.getY());
+        Entity nextEntity = cells[nextPosition.getX()][nextPosition.getY()];
         CHECK:
-        if (nextPosition == null)
+        if (nextEntity == null)
             break CHECK;
-        else if (nextPosition instanceof Wall)
+        else if (nextEntity instanceof Wall)
             return;
-        else if (nextPosition instanceof MiniSquirrel ||
-                nextPosition instanceof MasterSquirrel) {
-            nextPosition.updateEnergy(badBeast.getEnergy());
+        else if (nextEntity instanceof MiniSquirrel ||
+                nextEntity instanceof MasterSquirrel) {
+            nextEntity.updateEnergy(badBeast.getEnergy());
             killAndReplace(badBeast);
         }
         cells[badBeast.getPosition().getX()][badBeast.getPosition().getY()] = null;
-        nextPosition = badBeast;
+        cells[nextPosition.getX()][nextPosition.getY()] = badBeast;
+        badBeast.setPosition(nextPosition);
     }
 
     @Override
     public void tryMove(MasterSquirrel masterSquirrel, XY moveDirection) {
-        Entity nextPosition = cells[masterSquirrel.getPosition().getX() + moveDirection.getX()]
-                [masterSquirrel.getPosition().getY() + moveDirection.getY()];
+        XY nextPosition = new XY(masterSquirrel.getPosition().getX() + moveDirection.getX(),
+                masterSquirrel.getPosition().getY() + moveDirection.getY());
+        Entity nextEntity = cells[nextPosition.getX()][nextPosition.getY()];
         CHECK:
-        if (nextPosition == null)
+        if (nextEntity == null)
             break CHECK;
-        else if (nextPosition instanceof Wall)
+        else if (nextEntity instanceof Wall)
         {
-            masterSquirrel.updateEnergy(nextPosition.getEnergy());
+            masterSquirrel.updateEnergy(nextEntity.getEnergy());
             masterSquirrel.paralyze();
             return;
         }
-        else if (nextPosition instanceof MasterSquirrel) {
+        else if (nextEntity instanceof MasterSquirrel) {
             // TODO:....
         }
         else {
-            masterSquirrel.updateEnergy(nextPosition.getEnergy());
-            killAndReplace(nextPosition);
+            masterSquirrel.updateEnergy(nextEntity.getEnergy());
+            killAndReplace(nextEntity);
         }
         cells[masterSquirrel.getPosition().getX()][masterSquirrel.getPosition().getY()] = null;
-        nextPosition = masterSquirrel;
+        cells[nextPosition.getX()][nextPosition.getY()] = masterSquirrel;
+        masterSquirrel.setPosition(nextPosition);
     }
 
     @Override
@@ -113,16 +123,22 @@ public class FlattenedBoard implements EntityContext, BoardView {
 
     @Override
     public void kill(Entity entity) {
-
+        // TODO: No sense....
     }
 
     @Override
     public void killAndReplace(Entity entity) {
+        entity.updateEnergy(entity.getStartEnergy() - entity.getEnergy());
+        XY randomPos = XY.getRandomPosition(board.getSize().getX(), board.getSize().getY());
+        while (getEntityType(randomPos).getEntity() != null)
+            randomPos = XY.getRandomPosition(board.getSize().getX(), board.getSize().getY());
+        entity.setPosition(new XY(randomPos.getX(), randomPos.getY()));
+        cells[randomPos.getX()][randomPos.getY()] = entity;
     }
 
     @Override
     public EntityType getEntityType(XY xy) {
-        return null;
+        return new EntityType(cells[xy.getX()][xy.getY()]);
     }
 
     public FlattenedBoard(Board board) {
@@ -130,23 +146,5 @@ public class FlattenedBoard implements EntityContext, BoardView {
         cells = board.getEntities();
     }
 
-    protected void collide(Entity active, Entity passive) {
-        if (passive instanceof MasterSquirrel && !(active instanceof MasterSquirrel)) {
-            Entity temp = active;
-            active = passive;
-            passive = temp;
-        }
-
-        active.updateEnergy(passive.getEnergy());
-        if (active instanceof PlayerEntity && passive instanceof PlayerEntity) {
-            PlayerEntity passivePlayer = (PlayerEntity) passive;
-            PlayerEntity activePlayer = (PlayerEntity) active;
-            if (passivePlayer.getPatron() == activePlayer.getPatron())
-                return;
-
-        } else if (passive instanceof Wall) {
-
-        }
-    }
 
 }

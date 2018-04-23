@@ -4,7 +4,6 @@ import games.fatsquirrel.core.XY;
 
 public abstract class Entity {
 
-    protected static int idCounter = 0;
     protected XY position;
     protected int id;
     protected int energy;
@@ -19,8 +18,8 @@ public abstract class Entity {
     public XY getPosition() {
         return position;
     }
-    public void resetEnergy() {energy = 0;}
     public int getEnergy() {return energy;}
+    public abstract int getStartEnergy(); // TODO: Implement in subclasses!!1
 
     public XY nextStep() {
         XY deltaVector = XY.getRandomMoveVector();
