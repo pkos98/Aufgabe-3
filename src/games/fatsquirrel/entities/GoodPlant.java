@@ -7,11 +7,6 @@ public class GoodPlant extends Character {
     private static final int START_ENERGY = 100;
 
     @Override
-    public String getSymbol() {
-        return "GP";
-    }
-
-    @Override
     public XY nextStep() {
         return position;
     }

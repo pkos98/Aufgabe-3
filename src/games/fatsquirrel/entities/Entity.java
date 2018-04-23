@@ -21,7 +21,6 @@ public abstract class Entity {
     }
     public void resetEnergy() {energy = 0;}
     public int getEnergy() {return energy;}
-    public abstract String getSymbol();
 
     public XY nextStep() {
         XY deltaVector = XY.getRandomMoveVector();
@@ -37,7 +36,6 @@ public abstract class Entity {
     @Override
     public String toString() {
         String result = "";
-        result += "Type: " + getSymbol() + System.lineSeparator();
         result += "ID: " + id + System.lineSeparator();
         result += "Position: " + position.toString() + System.lineSeparator();
         result += "Energy: " + energy + System.lineSeparator();

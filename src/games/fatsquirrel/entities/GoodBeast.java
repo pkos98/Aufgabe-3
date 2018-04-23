@@ -9,9 +9,4 @@ public class GoodBeast extends Character {
     public GoodBeast(int id, XY startPos) {
         super(id, START_ENERGY, startPos);
     }
-
-    @Override
-    public String getSymbol() {
-        return "GB";
-    }
 }

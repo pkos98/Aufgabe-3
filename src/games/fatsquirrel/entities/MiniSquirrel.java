@@ -15,9 +15,4 @@ public class MiniSquirrel extends Character {
     public MasterSquirrel getPatron() {
         return patron;
     }
-
-    @Override
-    public String getSymbol() {
-        return "ms";
-    }
 }

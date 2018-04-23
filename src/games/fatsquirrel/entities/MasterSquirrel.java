@@ -9,11 +9,6 @@ public abstract class MasterSquirrel extends PlayerEntity {
 
     List<MiniSquirrel> miniSquirrels = new LinkedList<>();
 
-    @Override
-    public String getSymbol() {
-        return "MS";
-    }
-
     public MasterSquirrel(int id, int startEnergy, XY startPos) {
         super(id, startEnergy, startPos);
     }

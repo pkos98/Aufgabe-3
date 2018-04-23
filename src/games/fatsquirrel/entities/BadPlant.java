@@ -14,10 +14,4 @@ public class BadPlant extends Entity {
     public XY nextStep() {
         return position;
     }
-
-    @Override
-    public String getSymbol() {
-        return "BP";
-    }
-
 }
