@@ -20,6 +20,7 @@ public interface EntityContext {
 
     void killAndReplace(Entity entity);
 
-    EntityType getEntityTyp(XY xy);
+    EntityType getEntityType(XY xy);
+
 }
 
