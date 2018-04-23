@@ -15,4 +15,8 @@ public class GoodPlant extends Character {
         super(id, START_ENERGY, startPos);
     }
 
+    @Override
+    public int getStartEnergy() {
+        return START_ENERGY;
+    }
 }

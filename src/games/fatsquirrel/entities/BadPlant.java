@@ -11,6 +11,11 @@ public class BadPlant extends Entity {
     }
 
     @Override
+    public int getStartEnergy() {
+        return START_ENERGY;
+    }
+
+    @Override
     public XY nextStep() {
         return position;
     }
