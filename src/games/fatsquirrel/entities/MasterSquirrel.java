@@ -5,7 +5,7 @@ import games.fatsquirrel.core.XY;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class MasterSquirrel extends Entity {
+public abstract class MasterSquirrel extends PlayerEntity {
 
     List<MiniSquirrel> miniSquirrels = new LinkedList<>();
 
@@ -14,9 +14,8 @@ public abstract class MasterSquirrel extends Entity {
         return "MS";
     }
 
-    public MasterSquirrel(XY startPos) {
-        super(startPos);
-        energy = 1000;
+    public MasterSquirrel(int id, int startEnergy, XY startPos) {
+        super(id, startEnergy, startPos);
     }
 
     public boolean checkEntity(Entity entity) { return false; }

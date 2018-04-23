@@ -2,7 +2,7 @@ package games.fatsquirrel.entities;
 
 import games.fatsquirrel.core.XY;
 
-public class GoodPlant extends Entity {
+public class GoodPlant extends Character {
 
     private static final int START_ENERGY = 100;
 

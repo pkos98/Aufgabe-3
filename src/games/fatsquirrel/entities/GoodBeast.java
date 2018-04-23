@@ -2,7 +2,7 @@ package games.fatsquirrel.entities;
 
 import games.fatsquirrel.core.XY;
 
-public class GoodBeast extends Entity {
+public class GoodBeast extends Character {
 
     private static final int START_ENERGY = 200;
 
