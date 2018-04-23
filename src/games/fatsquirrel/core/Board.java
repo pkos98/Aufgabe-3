@@ -4,10 +4,10 @@ import games.fatsquirrel.entities.Entity;
 
 public class Board {
 
-    private final Entity entities;
+    private final Entity[][] entities;
     private BoardConfig boardConfig;
 
-    public Board(Entity entities, BoardConfig boardConfig, BoardConfig config) {
+    public Board(Entity[][] entities, BoardConfig boardConfig, BoardConfig config) {
         this.entities = entities;
         this.boardConfig = boardConfig;
         this.boardConfig = config;
@@ -20,5 +20,9 @@ public class Board {
     public FlattenedBoard flatten() {
         // TODO: Implement....
         return null;
+    }
+
+    public Entity[][] getEntities() {
+        return entities;
     }
 }
