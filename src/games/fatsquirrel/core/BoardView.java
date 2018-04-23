@@ -4,7 +4,7 @@ import games.fatsquirrel.entities.EntityType;
 
 public interface BoardView {
 
-    EntityType getEntityTyp(int x, int y);
+    EntityType getEntityType(int x, int y);
 
-    XY getsize();
+    XY getSize();
 }
