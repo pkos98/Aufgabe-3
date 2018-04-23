@@ -1,16 +1,20 @@
 package games.fatsquirrel.core;
 
+import games.fatsquirrel.entities.Entity;
 
 public class Board {
 
-    private BoardConfig config;
+    private final Entity entities;
+    private BoardConfig boardConfig;
 
-    public XY getSize() {
-        return config.getSize();
+    public Board(Entity entities, BoardConfig boardConfig, BoardConfig config) {
+        this.entities = entities;
+        this.boardConfig = boardConfig;
+        this.boardConfig = config;
     }
 
-    public Board(BoardConfig config) {
-        this.config = config;
+    public XY getSize() {
+        return boardConfig.getSize();
     }
 
     public FlattenedBoard flatten() {

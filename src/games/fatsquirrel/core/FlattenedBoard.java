@@ -16,7 +16,6 @@ public class FlattenedBoard implements EntityContext, BoardView {
 
     @Override
     public void tryMove(MiniSquirrel miniSquirrel, XY moveDirection) {
-
     }
 
     @Override
@@ -26,7 +25,6 @@ public class FlattenedBoard implements EntityContext, BoardView {
 
     @Override
     public void tryMove(BadBeast badBeast, XY moveDirection) {
-
     }
 
     @Override
@@ -46,7 +44,6 @@ public class FlattenedBoard implements EntityContext, BoardView {
 
     @Override
     public void killAndReplace(Entity entity) {
-
     }
 
     @Override
