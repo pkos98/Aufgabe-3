@@ -44,9 +44,10 @@ public abstract class Entity {
         return result;
     }
 
-    public Entity(XY startPos) {
+    public Entity(int id, int startEnergy, XY startPos) {
+        this.id = id;
+        this.energy = startEnergy;
         this.position = startPos;
-        this.id = idCounter++;
     }
 
 }

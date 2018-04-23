@@ -4,6 +4,8 @@ import games.fatsquirrel.core.XY;
 
 public class GoodPlant extends Entity {
 
+    private static final int START_ENERGY = 100;
+
     @Override
     public String getSymbol() {
         return "GP";
@@ -14,9 +16,8 @@ public class GoodPlant extends Entity {
         return position;
     }
 
-    public GoodPlant(XY startPos) {
-        super(startPos);
-        energy = 100;
+    public GoodPlant(int id, XY startPos) {
+        super(id, START_ENERGY, startPos);
     }
 
 }

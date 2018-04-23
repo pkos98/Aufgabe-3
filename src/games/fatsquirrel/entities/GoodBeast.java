@@ -4,9 +4,10 @@ import games.fatsquirrel.core.XY;
 
 public class GoodBeast extends Entity {
 
-    public GoodBeast(XY startPos) {
-        super(startPos);
-        energy = 200;
+    private static final int START_ENERGY = 200;
+
+    public GoodBeast(int id, XY startPos) {
+        super(id, START_ENERGY, startPos);
     }
 
     @Override

@@ -4,6 +4,8 @@ import games.fatsquirrel.core.XY;
 
 public class Wall extends Entity {
 
+    private static final int START_ENERGY = -10;
+
     @Override
     public String getSymbol() {
         return "WL";
@@ -14,9 +16,8 @@ public class Wall extends Entity {
         return position;
     }
 
-    public Wall(XY startPos) {
-        super(startPos);
-        energy = -10;
+    public Wall(int id, XY startPos) {
+        super(id, START_ENERGY, startPos);
     }
 
 

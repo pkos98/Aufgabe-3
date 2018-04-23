@@ -4,9 +4,10 @@ import games.fatsquirrel.core.XY;
 
 public class BadPlant extends Entity {
 
-    public BadPlant(XY startPos) {
-        super(startPos);
-        energy = -100;
+    private static final int START_ENERGY = -100;
+
+    public BadPlant(int id, XY startPos) {
+        super(id, START_ENERGY, startPos);
     }
 
     @Override
