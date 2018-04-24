@@ -2,24 +2,27 @@ package games.fatsquirrel.console;
 import games.fatsquirrel.Game;
 import games.fatsquirrel.State;
 
-public class GameImpl extends Game{
+public class GameImpl extends Game {
 
     public GameImpl(State state) {
         super(state);
     }
 
+    public void run() {
+        while (true) {
+            render();
+            processInput();
+            update();
+        }
+    }
+
     @Override
     protected void render() {
-        super.render();
+        ui.render(state.flattenedBoard());
     }
 
     @Override
     protected void processInput(){
-        super.processInput();
-    }
-
-    @Override
-    protected void update() {
-        super.update();
+        state.setInput(ui.getCommand());
     }
 }

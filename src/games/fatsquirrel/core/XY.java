@@ -28,6 +28,15 @@ public final class XY {
         return new XY(x, y);
     }
 
+    public void add(XY xy) {
+        x = x + xy.getX();
+        y = y + xy.getY();
+    }
+
+    public void add(int x, int y) {
+        add(new XY(x, y));
+    }
+
     @Override
     public String toString() {
         return "X: " + x + " | Y:" + y;

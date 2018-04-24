@@ -22,10 +22,7 @@ public abstract class Entity {
     public abstract int getStartEnergy(); // TODO: Implement in subclasses!!1
 
     public XY nextStep() {
-        XY deltaVector = XY.getRandomMoveVector();
-        XY newPos = new XY(position.getX() + deltaVector.getX(),
-                position.getY() + deltaVector.getY());
-        return newPos;
+        return position;
     }
 
     public void updateEnergy(int delta) {

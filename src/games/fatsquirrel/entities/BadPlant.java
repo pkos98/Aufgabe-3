@@ -15,8 +15,4 @@ public class BadPlant extends Entity {
         return START_ENERGY;
     }
 
-    @Override
-    public XY nextStep() {
-        return position;
-    }
 }

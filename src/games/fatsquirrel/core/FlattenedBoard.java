@@ -2,9 +2,6 @@ package games.fatsquirrel.core;
 
 import games.fatsquirrel.entities.*;
 
-import java.util.Random;
-
-
 public class FlattenedBoard implements EntityContext, BoardView {
 
     private Board board;
@@ -130,7 +127,7 @@ public class FlattenedBoard implements EntityContext, BoardView {
     public void killAndReplace(Entity entity) {
         entity.updateEnergy(entity.getStartEnergy() - entity.getEnergy());
         XY randomPos = XY.getRandomPosition(board.getSize().getX(), board.getSize().getY());
-        while (getEntityType(randomPos).getEntity() != null)
+        while (getEntityType(randomPos) != null)
             randomPos = XY.getRandomPosition(board.getSize().getX(), board.getSize().getY());
         entity.setPosition(new XY(randomPos.getX(), randomPos.getY()));
         cells[randomPos.getX()][randomPos.getY()] = entity;
@@ -138,7 +135,7 @@ public class FlattenedBoard implements EntityContext, BoardView {
 
     @Override
     public EntityType getEntityType(XY xy) {
-        return new EntityType(cells[xy.getX()][xy.getY()]);
+        return EntityType.fromEntity(cells[xy.getX()][xy.getY()]);
     }
 
     public FlattenedBoard(Board board) {
