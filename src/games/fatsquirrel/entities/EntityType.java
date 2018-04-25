@@ -28,27 +28,4 @@ public enum EntityType {
         else
             return null;
     }
-
-    @Override
-    public String toString() {
-        switch (this) {
-
-            case GoodBeast:
-                return "GB";
-            case BadBeast:
-                return "BB";
-            case GoodPlant:
-                return "GP";
-            case BadPlant:
-                return "BP";
-            case Wall:
-                return "WA";
-            case MasterSquirrel:
-                return "MS";
-            case MiniSquirrel:
-                return "mS";
-            default:
-                return null;
-        }
-    }
 }

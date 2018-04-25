@@ -5,7 +5,7 @@ import games.fatsquirrel.core.BoardView;
 import games.fatsquirrel.core.MoveCommand;
 import games.fatsquirrel.entities.EntityType;
 
-public class ConsoleUI implements UI{
+public class ConsoleUI implements UI {
 
     private String FIELD_SEPERATOR = "|";
     // getCommand implementieren & Board/FlattenedBoard iplementieren
@@ -24,11 +24,32 @@ public class ConsoleUI implements UI{
                 if (iterField == null)
                     result += "__";
                 else
-                    result += iterField.toString() + FIELD_SEPERATOR;
+                    result += toString(iterField) + FIELD_SEPERATOR;
             }
             result += System.lineSeparator();
         }
         System.out.print(result);
     }
-    
+
+    private String toString(EntityType entity) {
+        switch (entity) {
+            case GoodBeast:
+                return "GB";
+            case BadBeast:
+                return "BB";
+            case GoodPlant:
+                return "GP";
+            case BadPlant:
+                return "BP";
+            case Wall:
+                return "WA";
+            case MasterSquirrel:
+                return "MS";
+            case MiniSquirrel:
+                return "mS";
+            default:
+                return null;
+        }
+    }
+
 }
