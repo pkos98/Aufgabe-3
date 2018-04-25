@@ -14,4 +14,10 @@ public class GoodBeast extends Character {
     public int getStartEnergy() {
         return START_ENERGY;
     }
+
+    @Override
+    public XY nextStep() {
+        // TODO: Implement...
+        return null;
+    }
 }

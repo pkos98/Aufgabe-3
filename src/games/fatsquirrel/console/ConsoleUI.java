@@ -8,6 +8,7 @@ import games.fatsquirrel.entities.EntityType;
 public class ConsoleUI implements UI{
 
     private String FIELD_SEPERATOR = "|";
+    // getCommand implementieren & Board/FlattenedBoard iplementieren
 
     @Override
     public MoveCommand getCommand() {
@@ -20,7 +21,10 @@ public class ConsoleUI implements UI{
         for (int y = 0; y < view.getSize().getY(); y++) {
             for (int x = 0; x < view.getSize().getX(); x++) {
                 EntityType iterField = view.getEntityType(x, y);
-                result += iterField.toString() + FIELD_SEPERATOR;
+                if (iterField == null)
+                    result += "__";
+                else
+                    result += iterField.toString() + FIELD_SEPERATOR;
             }
             result += System.lineSeparator();
         }

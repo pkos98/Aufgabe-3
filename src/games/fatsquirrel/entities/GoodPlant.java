@@ -8,7 +8,7 @@ public class GoodPlant extends Character {
 
     @Override
     public XY nextStep() {
-        return position;
+        return getPosition();
     }
 
     public GoodPlant(int id, XY startPos) {

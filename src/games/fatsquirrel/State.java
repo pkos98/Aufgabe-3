@@ -23,9 +23,11 @@ public class State {
                     continue;
                 // If NOT NULL
                 if (iterField instanceof MasterSquirrel)
+
                     ((MasterSquirrel)iterField).setInput(input);
 
-                iterField.nextStep();
+                if (Character.class.isInstance(iterField))
+                    continue; //((Character)iterField).nextStep();
             }
         }
     }

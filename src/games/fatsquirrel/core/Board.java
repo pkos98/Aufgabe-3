@@ -9,6 +9,7 @@ public class Board {
 
     public Board(BoardConfig config) {
         this.boardConfig = config;
+        this.entities = new Entity[config.getSize().getX()][config.getSize().getY()];
     }
 
     public XY getSize() {

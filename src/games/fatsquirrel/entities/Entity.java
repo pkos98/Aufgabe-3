@@ -4,25 +4,21 @@ import games.fatsquirrel.core.XY;
 
 public abstract class Entity {
 
-    protected XY position;
-    protected int id;
-    protected int energy;
+    private XY position;
+    private int id;
+    private int energy;
 
     public int getId() {
         return id;
-    }
-
-    public void setPosition(XY pos) {
-        position = pos;
     }
     public XY getPosition() {
         return position;
     }
     public int getEnergy() {return energy;}
-    public abstract int getStartEnergy(); // TODO: Implement in subclasses!!1
+    public abstract int getStartEnergy();
 
-    public XY nextStep() {
-        return position;
+    public void setPosition(XY pos) {
+        position = pos;
     }
 
     public void updateEnergy(int delta) {

@@ -6,9 +6,8 @@ public abstract class PlayerEntity extends Character{
 
     private static final int START_ENERGY = 0;
 
-    protected boolean isParalyzed;
-    protected XY position;
-    protected MasterSquirrel patron;
+    private boolean isParalyzed;
+    private MasterSquirrel patron;
 
 
     public MasterSquirrel getPatron() {

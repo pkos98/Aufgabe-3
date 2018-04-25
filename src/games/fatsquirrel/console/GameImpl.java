@@ -1,20 +1,16 @@
 package games.fatsquirrel.console;
 import games.fatsquirrel.Game;
 import games.fatsquirrel.State;
+import games.fatsquirrel.UI;
 
 public class GameImpl extends Game {
 
-    public GameImpl(State state) {
-        super(state);
+    public GameImpl(State state, UI ui) {
+        super(state, ui);
     }
 
-    public void run() {
-        while (true) {
-            render();
-            processInput();
-            update();
-        }
-    }
+    // MasterSquirrel referenz & input setten
+
 
     @Override
     protected void render() {

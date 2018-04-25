@@ -23,8 +23,8 @@ public abstract class MasterSquirrel extends PlayerEntity {
 
     @Override
     public XY nextStep() {
-        position.add(input.toXY());
-        return position;
+        getPosition().add(input.toXY());
+        return getPosition();
     }
 
 }
